@@ -17,6 +17,21 @@ TimePoint::TimePoint(int h, int m) {
     minutes_ = m;
 }
 
+TimePoint TimePoint::Parse(const std::string& time_str) {
+    int h = std::stoi(time_str.substr(0, 2));
+    int m = std::stoi(time_str.substr(3, 2));
+    return {h, m};
+}
+
+TimePoint TimePoint::Parse(std::istream& is) {
+    int h = 0;
+    int m = 0;
+    is >> h;
+    is.ignore(1);
+    is >> m;
+    return {h, m};
+}
+
 int TimePoint::Hours() const {
     return hours_;
 }
@@ -93,6 +108,34 @@ const TimePoint& Event::Time() const {
 
 int Event::Id() const {
     return id_;
+}
+
+std::unique_ptr<Event> Event::Parse(const std::string& event_str) {
+    std::istringstream iss(event_str);
+    std::string time_str;
+    int event_id = -1;
+    iss >> time_str >> event_id;
+
+    TimePoint time = TimePoint::Parse(time_str);
+
+    switch (event_id) {
+        case 1:
+            return ClientArrivalEvent::Parse(iss, time);
+        case 2:
+            return ClientChangedSeatingEvent::Parse(iss, time);
+        case 3:
+            return ClientWaitingEvent::Parse(iss, time);
+        case 4:
+            return ClientLeftVoluntarilyEvent::Parse(iss, time);
+        case 11:
+            return ClientLeftInvoluntarilyEvent::Parse(iss, time);
+        case 12:
+            return ClientSeatingEvent::Parse(iss, time);
+        case 13:
+            return ErrorEvent::Parse(iss, time);
+        default:
+            throw std::invalid_argument("Unknown event ID: " + std::to_string(event_id));
+    }
 }
 
 IncomingEvent::IncomingEvent(const TimePoint& t, int i, std::string client)
@@ -186,6 +229,56 @@ ErrorEvent::ErrorEvent(const TimePoint& t, std::string error)
 
 std::string ErrorEvent::ToString() const {
     return Time().ToString() + " 13 (Error) " + Message();
+}
+
+std::unique_ptr<ClientArrivalEvent> ClientArrivalEvent::Parse(
+    std::istringstream& iss, const TimePoint& time) {
+    std::string client_name;
+    iss >> client_name;
+    return std::make_unique<ClientArrivalEvent>(time, client_name);
+}
+
+std::unique_ptr<ClientChangedSeatingEvent> ClientChangedSeatingEvent::Parse(
+    std::istringstream& iss, const TimePoint& time) {
+    std::string client_name;
+    int table_number = -1;
+    iss >> client_name >> table_number;
+    return std::make_unique<ClientChangedSeatingEvent>(time, client_name, table_number);
+}
+
+std::unique_ptr<ClientWaitingEvent> ClientWaitingEvent::Parse(
+    std::istringstream& iss, const TimePoint& time) {
+    std::string client_name;
+    iss >> client_name;
+    return std::make_unique<ClientWaitingEvent>(time, client_name);
+}
+
+std::unique_ptr<ClientLeftVoluntarilyEvent> ClientLeftVoluntarilyEvent::Parse(
+    std::istringstream& iss, const TimePoint& time) {
+    std::string client_name;
+    iss >> client_name;
+    return std::make_unique<ClientLeftVoluntarilyEvent>(time, client_name);
+}
+
+std::unique_ptr<ClientLeftInvoluntarilyEvent> ClientLeftInvoluntarilyEvent::Parse(
+    std::istringstream& iss, const TimePoint& time) {
+    std::string client_name;
+    iss >> client_name;
+    return std::make_unique<ClientLeftInvoluntarilyEvent>(time, client_name);
+}
+
+std::unique_ptr<ClientSeatingEvent> ClientSeatingEvent::Parse(
+    std::istringstream& iss, const TimePoint& time) {
+    std::string client_name;
+    int table_number = -1;
+    iss >> client_name >> table_number;
+    return std::make_unique<ClientSeatingEvent>(time, client_name, table_number);
+}
+
+std::unique_ptr<ErrorEvent> ErrorEvent::Parse(std::istringstream& iss, const TimePoint& time) {
+    std::string error_message;
+    std::getline(iss, error_message);
+    return std::make_unique<ErrorEvent>(time, error_message);
 }
 
 }  // namespace computer_club

@@ -1,5 +1,7 @@
 #include "Client.h"
 
+namespace computer_club {
+
 bool Client::InClub() const {
     return table_number_.has_value();
 }
@@ -14,3 +16,4 @@ int Client::TableNumber() const {
 std::string Client::Name() const {
     return name_;
 }
+} // namespace computer_club

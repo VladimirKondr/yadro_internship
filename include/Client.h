@@ -3,6 +3,7 @@
 
 #include <string>
 #include <utility>
+namespace computer_club {
 
 class Client {
    private:
@@ -10,7 +11,8 @@ class Client {
     std::optional<int> table_number_;
 
    public:
-    explicit Client(std::string n) : name_(std::move(n)), table_number_(0) {}
+    explicit Client(std::string n) : name_(std::move(n)), table_number_(0) {
+    }
 
     [[nodiscard]] bool InClub() const;
 
@@ -18,5 +20,7 @@ class Client {
 
     [[nodiscard]] std::string Name() const;
 };
+
+} // namespace computer_club
 
 #endif  // CLIENT_H
