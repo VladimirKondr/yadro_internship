@@ -17,7 +17,7 @@ class ClientLeftInvoluntarilyEvent : public OutgoingEvent {
     ClientLeftInvoluntarilyEvent(const TimePoint& t, std::string client);
     [[nodiscard]] std::string ToString() const override;
     [[nodiscard]] std::string ClientName() const;
-    static std::unique_ptr<ClientLeftInvoluntarilyEvent> Parse(
+    static std::shared_ptr<ClientLeftInvoluntarilyEvent> Parse(
         std::istringstream& iss, const TimePoint& time);
 };
 

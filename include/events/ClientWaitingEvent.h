@@ -13,7 +13,7 @@ class ClientWaitingEvent : public IncomingEvent {
    public:
     ClientWaitingEvent(const TimePoint& t, std::string client);
     [[nodiscard]] std::string ToString() const override;
-    static std::unique_ptr<ClientWaitingEvent> Parse(
+    static std::shared_ptr<ClientWaitingEvent> Parse(
         std::istringstream& iss, const TimePoint& time);
 };
 

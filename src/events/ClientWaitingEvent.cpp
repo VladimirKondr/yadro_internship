@@ -1,4 +1,4 @@
-#include "ClientWaitingEvent.h"
+#include "events/ClientWaitingEvent.h"
 
 #include <sstream>
 
@@ -12,7 +12,7 @@ std::string ClientWaitingEvent::ToString() const {
     return Time().ToString() + " 3 (ClientWaiting) " + ClientName();
 }
 
-std::unique_ptr<ClientWaitingEvent> ClientWaitingEvent::Parse(
+std::shared_ptr<ClientWaitingEvent> ClientWaitingEvent::Parse(
     std::istringstream& iss, const TimePoint& time) {
     std::string client_name;
     iss >> client_name;

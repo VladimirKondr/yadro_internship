@@ -19,7 +19,7 @@ class ClientSeatingEvent : public OutgoingEvent {
     [[nodiscard]] int TableNumber() const;
     [[nodiscard]] std::string ToString() const override;
     [[nodiscard]] std::string ClientName() const;
-    static std::unique_ptr<ClientSeatingEvent> Parse(
+    static std::shared_ptr<ClientSeatingEvent> Parse(
         std::istringstream& iss, const TimePoint& time);
 };
 

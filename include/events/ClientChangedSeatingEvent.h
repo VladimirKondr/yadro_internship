@@ -17,7 +17,7 @@ class ClientChangedSeatingEvent : public IncomingEvent {
     ClientChangedSeatingEvent(const TimePoint& t, std::string client, int table);
     [[nodiscard]] int TableNumber() const;
     [[nodiscard]] std::string ToString() const override;
-    static std::unique_ptr<ClientChangedSeatingEvent> Parse(
+    static std::shared_ptr<ClientChangedSeatingEvent> Parse(
         std::istringstream& iss, const TimePoint& time);
 };
 

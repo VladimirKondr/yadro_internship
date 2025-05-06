@@ -1,4 +1,4 @@
-#include "ClientChangedSeatingEvent.h"
+#include "events/ClientChangedSeatingEvent.h"
 
 #include <sstream>
 
@@ -18,7 +18,7 @@ std::string ClientChangedSeatingEvent::ToString() const {
            std::to_string(TableNumber());
 }
 
-std::unique_ptr<ClientChangedSeatingEvent> ClientChangedSeatingEvent::Parse(
+std::shared_ptr<ClientChangedSeatingEvent> ClientChangedSeatingEvent::Parse(
     std::istringstream& iss, const TimePoint& time) {
     std::string client_name;
     int table_number = -1;

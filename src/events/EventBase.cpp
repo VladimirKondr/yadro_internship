@@ -1,11 +1,11 @@
-#include "ClientArrivalEvent.h"
-#include "ClientChangedSeatingEvent.h"
-#include "ClientLeftInvoluntarilyEvent.h"
-#include "ClientLeftVoluntarilyEvent.h"
-#include "ClientSeatingEvent.h"
-#include "ClientWaitingEvent.h"
-#include "ErrorEvent.h"
-#include "TimePoint.h"
+#include "events/ClientArrivalEvent.h"
+#include "events/ClientChangedSeatingEvent.h"
+#include "events/ClientLeftInvoluntarilyEvent.h"
+#include "events/ClientLeftVoluntarilyEvent.h"
+#include "events/ClientSeatingEvent.h"
+#include "events/ClientWaitingEvent.h"
+#include "events/ErrorEvent.h"
+#include "events/TimePoint.h"
 
 #include <sstream>
 #include <stdexcept>
@@ -23,7 +23,7 @@ int Event::Id() const {
     return id_;
 }
 
-std::unique_ptr<Event> Event::Parse(const std::string& event_str) {
+std::shared_ptr<Event> Event::Parse(const std::string& event_str) {
     std::istringstream iss(event_str);
     std::string time_str;
     int event_id = -1;

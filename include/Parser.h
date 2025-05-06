@@ -1,8 +1,8 @@
 #ifndef PARSER_H
 #define PARSER_H
 
-#include "EventBase.h"
-#include "TimePoint.h"
+#include "events/EventBase.h"
+#include "events/TimePoint.h"
 
 namespace computer_club {
 
@@ -14,7 +14,7 @@ class Parser {
     TimePoint open_time_;
     TimePoint close_time_;
     double hourly_rate_{};
-    std::vector<std::unique_ptr<Event>> events_;
+    std::vector<std::shared_ptr<Event>> events_;
 
    public:
     Parser(const Parser&) = delete;
@@ -35,7 +35,7 @@ class Parser {
 
     [[nodiscard]] double HourlyRate() const;
 
-    [[nodiscard]] const std::vector<std::unique_ptr<Event>>& Events() const;
+    [[nodiscard]] const std::vector<std::shared_ptr<Event>>& Events() const;
 
     [[nodiscard]] std::string ToString() const;
 };

@@ -27,7 +27,7 @@ class Event {
     [[nodiscard]] const TimePoint& Time() const;
     [[nodiscard]] int Id() const;
 
-    static std::unique_ptr<Event> Parse(const std::string& event_str);
+    static std::shared_ptr<Event> Parse(const std::string& event_str);
 };
 
 }  // namespace computer_club

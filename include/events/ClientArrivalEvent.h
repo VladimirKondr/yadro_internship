@@ -13,7 +13,7 @@ class ClientArrivalEvent : public IncomingEvent {
    public:
     ClientArrivalEvent(const TimePoint& t, std::string client);
     [[nodiscard]] std::string ToString() const override;
-    static std::unique_ptr<ClientArrivalEvent> Parse(
+    static std::shared_ptr<ClientArrivalEvent> Parse(
         std::istringstream& iss, const TimePoint& time);
 };
 

@@ -45,7 +45,7 @@ int Parser::TableCount() const {
     return hourly_rate_;
 }
 
-[[nodiscard]] const std::vector<std::unique_ptr<Event>>& Parser::Events() const {
+[[nodiscard]] const std::vector<std::shared_ptr<Event>>& Parser::Events() const {
     return events_;
 }
 

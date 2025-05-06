@@ -1,4 +1,4 @@
-#include "ClientLeftVoluntarilyEvent.h"
+#include "events/ClientLeftVoluntarilyEvent.h"
 
 #include <sstream>
 
@@ -12,7 +12,7 @@ std::string ClientLeftVoluntarilyEvent::ToString() const {
     return Time().ToString() + " 4 (ClientLeftVoluntarily) " + ClientName();
 }
 
-std::unique_ptr<ClientLeftVoluntarilyEvent> ClientLeftVoluntarilyEvent::Parse(
+std::shared_ptr<ClientLeftVoluntarilyEvent> ClientLeftVoluntarilyEvent::Parse(
     std::istringstream& iss, const TimePoint& time) {
     std::string client_name;
     iss >> client_name;

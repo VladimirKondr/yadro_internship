@@ -13,7 +13,7 @@ class ClientLeftVoluntarilyEvent : public IncomingEvent {
    public:
     ClientLeftVoluntarilyEvent(const TimePoint& t, std::string client);
     [[nodiscard]] std::string ToString() const override;
-    static std::unique_ptr<ClientLeftVoluntarilyEvent> Parse(
+    static std::shared_ptr<ClientLeftVoluntarilyEvent> Parse(
         std::istringstream& iss, const TimePoint& time);
 };
 
