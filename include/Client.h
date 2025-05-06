@@ -3,6 +3,7 @@
 
 #include <string>
 #include <utility>
+
 namespace computer_club {
 
 class Client {
@@ -21,6 +22,6 @@ class Client {
     [[nodiscard]] std::string Name() const;
 };
 
-} // namespace computer_club
+}  // namespace computer_club
 
 #endif  // CLIENT_H

@@ -1,7 +1,8 @@
 #ifndef PARSER_H
 #define PARSER_H
 
-#include "Event.h"
+#include "EventBase.h"
+#include "TimePoint.h"
 
 namespace computer_club {
 
@@ -18,8 +19,8 @@ class Parser {
    public:
     Parser(const Parser&) = delete;
     Parser& operator=(const Parser&) = delete;
-    Parser(Parser&&) = default;
-    Parser& operator=(Parser&&) = default;
+    Parser(Parser&&) noexcept = default;
+    Parser& operator=(Parser&&) noexcept = default;
     ~Parser() = default;
 
     static Parser& GetInstance();

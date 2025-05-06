@@ -16,4 +16,4 @@ int Client::TableNumber() const {
 std::string Client::Name() const {
     return name_;
 }
-} // namespace computer_club
+}  // namespace computer_club

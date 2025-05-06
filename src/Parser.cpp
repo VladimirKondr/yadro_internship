@@ -1,9 +1,11 @@
 #include "Parser.h"
-#include "Event.h"
+
 #include <fstream>
 #include <sstream>
 
 namespace computer_club {
+
+std::unique_ptr<Parser> Parser::instance = nullptr;
 
 Parser& Parser::GetInstance() {
     if (!instance) {
@@ -43,7 +45,7 @@ int Parser::TableCount() const {
     return hourly_rate_;
 }
 
-[[nodiscard]] const std::vector<Event>& Parser::Events() const {
+[[nodiscard]] const std::vector<std::unique_ptr<Event>>& Parser::Events() const {
     return events_;
 }
 
