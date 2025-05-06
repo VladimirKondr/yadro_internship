@@ -1,5 +1,5 @@
-#ifndef ERROREVENT_H
-#define ERROREVENT_H
+#ifndef ERROR_EVENT_H
+#define ERROR_EVENT_H
 
 #include "OutgoingEvent.h"
 #include "TimePoint.h"

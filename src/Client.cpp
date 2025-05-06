@@ -2,18 +2,15 @@
 
 namespace computer_club {
 
-bool Client::InClub() const {
-    return table_number_.has_value();
+const std::string& Client::Name() {
+    return name_;
 }
 
 int Client::TableNumber() const {
-    if (InClub()) {
-        return table_number_.value();
-    }
-    throw std::logic_error("Client is not in the club");
+    return table_number_;
 }
 
-std::string Client::Name() const {
-    return name_;
+void Client::SetTableNumber(int table_number) {
+    table_number_ = table_number;
 }
 }  // namespace computer_club

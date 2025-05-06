@@ -6,6 +6,8 @@
 
 namespace computer_club {
 
+class FormatError : public std::exception {};
+
 class Parser {
    private:
     Parser() = default;
@@ -15,6 +17,14 @@ class Parser {
     TimePoint close_time_;
     double hourly_rate_{};
     std::vector<std::shared_ptr<Event>> events_;
+
+    static void ValidateTableCount(const std::string& line);
+    static void ValidateTimeRange(const std::string& line);
+    static void ValidateHourlyRate(const std::string& line);
+    void ValidateEventFormat(const std::string& line) const;
+    static void ValidateClientNameFormat(std::istringstream& iss);
+    void ValidateClientAndTableFormat(std::istringstream& iss) const ;
+    void ValidateEventSequence() const;
 
    public:
     Parser(const Parser&) = delete;

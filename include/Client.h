@@ -2,26 +2,24 @@
 #define CLIENT_H
 
 #include <string>
-#include <utility>
 
 namespace computer_club {
 
 class Client {
-   private:
+private:
     std::string name_;
-    std::optional<int> table_number_;
+    int table_number_;
 
-   public:
-    explicit Client(std::string n) : name_(std::move(n)), table_number_(0) {
-    }
-
-    [[nodiscard]] bool InClub() const;
-
+public:
+    Client() : name_(""), table_number_(-1) {}
+    
+    explicit Client(std::string n) : name_(std::move(n)), table_number_(-1) {}
+    
+    [[nodiscard]] const std::string& Name();
     [[nodiscard]] int TableNumber() const;
-
-    [[nodiscard]] std::string Name() const;
+    void SetTableNumber(int table_number);
 };
 
-}  // namespace computer_club
+} // namespace computer_club
 
-#endif  // CLIENT_H
+#endif // CLIENT_H
