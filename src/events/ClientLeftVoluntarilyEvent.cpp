@@ -9,7 +9,7 @@ ClientLeftVoluntarilyEvent::ClientLeftVoluntarilyEvent(const TimePoint& t, std::
 }
 
 std::string ClientLeftVoluntarilyEvent::ToString() const {
-    return Time().ToString() + " 4 (ClientLeftVoluntarily) " + ClientName();
+    return Time().ToString() + " 4 " + ClientName();
 }
 
 std::shared_ptr<ClientLeftVoluntarilyEvent> ClientLeftVoluntarilyEvent::Parse(

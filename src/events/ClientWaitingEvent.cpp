@@ -9,7 +9,7 @@ ClientWaitingEvent::ClientWaitingEvent(const TimePoint& t, std::string client)
 }
 
 std::string ClientWaitingEvent::ToString() const {
-    return Time().ToString() + " 3 (ClientWaiting) " + ClientName();
+    return Time().ToString() + " 3 " + ClientName();
 }
 
 std::shared_ptr<ClientWaitingEvent> ClientWaitingEvent::Parse(

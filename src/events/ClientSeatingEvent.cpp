@@ -19,7 +19,7 @@ std::string ClientSeatingEvent::ClientName() const {
 }
 
 std::string ClientSeatingEvent::ToString() const {
-    return Time().ToString() + " 12 (ClientSeating) " + ClientName() + " " +
+    return Time().ToString() + " 12 " + ClientName() + " " +
            std::to_string(TableNumber());
 }
 

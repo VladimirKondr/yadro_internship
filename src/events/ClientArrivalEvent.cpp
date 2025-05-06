@@ -9,7 +9,7 @@ ClientArrivalEvent::ClientArrivalEvent(const TimePoint& t, std::string client)
 }
 
 std::string ClientArrivalEvent::ToString() const {
-    return Time().ToString() + " 1 (ClientArrival) " + ClientName();
+    return Time().ToString() + " 1 " + ClientName();
 }
 
 std::shared_ptr<ClientArrivalEvent> ClientArrivalEvent::Parse(

@@ -10,7 +10,7 @@ ErrorEvent::ErrorEvent(const TimePoint& t, std::string error, std::shared_ptr<Ev
 }
 
 std::string ErrorEvent::ToString() const {
-    return Time().ToString() + " 13 (Error) " + Message();
+    return Time().ToString() + " 13 " + Message();
 }
 
 std::shared_ptr<ErrorEvent> ErrorEvent::Parse(std::istringstream& iss, const TimePoint& time) {

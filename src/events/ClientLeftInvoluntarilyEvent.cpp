@@ -13,7 +13,7 @@ std::string ClientLeftInvoluntarilyEvent::ClientName() const {
 }
 
 std::string ClientLeftInvoluntarilyEvent::ToString() const {
-    return Time().ToString() + " 11 (ClientLeftInvoluntarily) " + ClientName();
+    return Time().ToString() + " 11 " + ClientName();
 }
 
 std::shared_ptr<ClientLeftInvoluntarilyEvent> ClientLeftInvoluntarilyEvent::Parse(
