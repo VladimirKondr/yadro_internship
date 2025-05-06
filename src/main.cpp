@@ -30,18 +30,6 @@ int main(int argc, char* argv[]) {
         
         club.ClosingTime();
         
-        logger.Log(parser.OpenTime().ToString());
-        for (const auto& event : club.GetAllEvents()) {
-            logger.Log(event->ToString());
-        }
-        logger.Log(parser.CloseTime().ToString());
-        for (const auto& table : club.GetTables()) {
-            std::string stats = std::to_string(table.Id()) + " " +
-                                std::to_string(static_cast<int>(table.Revenue())) + " " +
-                                table.FormatBusyTime();
-            logger.Log(stats);
-        }
-        
         
         std::cout << parser.OpenTime().ToString() << '\n';
         
