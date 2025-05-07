@@ -1,4 +1,5 @@
 #include "events/TimePoint.h"
+
 #include <gtest/gtest.h>
 
 namespace computer_club {
@@ -36,7 +37,7 @@ TEST(TimePointTest, CompareLessThan) {
     EXPECT_TRUE(earlier < later);
     EXPECT_FALSE(later < earlier);
     EXPECT_FALSE(earlier < earlier);
-    
+
     TimePoint t1(9, 0);
     TimePoint t2(9, 1);
     EXPECT_TRUE(t1 < t2);
@@ -46,7 +47,7 @@ TEST(TimePointTest, CompareLessThanOrEqual) {
     TimePoint earlier(9, 0);
     TimePoint later(10, 0);
     TimePoint same(9, 0);
-    
+
     EXPECT_TRUE(earlier <= later);
     EXPECT_TRUE(earlier <= same);
     EXPECT_FALSE(later <= earlier);
@@ -64,7 +65,7 @@ TEST(TimePointTest, CompareGreaterThanOrEqual) {
     TimePoint earlier(9, 0);
     TimePoint later(10, 0);
     TimePoint same(9, 0);
-    
+
     EXPECT_TRUE(later >= earlier);
     EXPECT_TRUE(same >= earlier);
     EXPECT_FALSE(earlier >= later);
@@ -74,7 +75,7 @@ TEST(TimePointTest, CompareEqual) {
     TimePoint t1(9, 0);
     TimePoint t2(9, 0);
     TimePoint t3(10, 0);
-    
+
     EXPECT_TRUE(t1 == t2);
     EXPECT_FALSE(t1 == t3);
 }
@@ -83,7 +84,7 @@ TEST(TimePointTest, CompareNotEqual) {
     TimePoint t1(9, 0);
     TimePoint t2(9, 0);
     TimePoint t3(10, 0);
-    
+
     EXPECT_FALSE(t1 != t2);
     EXPECT_TRUE(t1 != t3);
 }
@@ -126,7 +127,7 @@ TEST(TimePointTest, SubtractTimePoint) {
 TEST(TimePointTest, AddThrowsOnInvalidTime) {
     TimePoint time(23, 59);
     EXPECT_THROW(time + 1, std::invalid_argument);
-    
+
     TimePoint time2(0, 0);
     EXPECT_THROW(time2 - 1, std::invalid_argument);
 }
