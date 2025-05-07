@@ -27,13 +27,15 @@ void TablePool::Initialize(int table_count, double hourly_rate) {
         return;
     }
     throw std::runtime_error(
-        "Instance already initialized. Use GetInstance() to access the existing instance.");
+        "TablePool Instance already initialized. Use GetInstance() to access the existing "
+        "instance.");
 }
 
 TablePool& TablePool::GetInstance() {
     if (!instance) {
         throw std::runtime_error(
-            "Instance not initialized. Call Initiallize(int, double, const TimePoint&, const "
+            "TablePool Instance not initialized. Call Initiallize(int, double, const TimePoint&, "
+            "const "
             "TimePoint&) first.");
     }
     return *instance;
@@ -79,4 +81,10 @@ std::string TablePool::ToString() {
            " hourly rate";
 }
 
+void TablePool::Reset() {
+    instance.reset();
+    tables.clear();
+    table_count = 0;
+    hourly_rate = 0.0;
+}
 }  // namespace computer_club

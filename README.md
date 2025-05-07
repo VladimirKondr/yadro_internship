@@ -153,3 +153,10 @@ cmake ..
 make
 ./task ../example.txt
 ```
+
+## Run tests
+```bash
+cd build
+make unit_tests
+```
+

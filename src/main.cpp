@@ -1,9 +1,7 @@
-#include "ClientPool.h"
 #include "Club.h"
 #include "Logger.h"
 #include "Parser.h"
 #include "TablePool.h"
-#include "events/EventBase.h"
 
 #include <iostream>
 

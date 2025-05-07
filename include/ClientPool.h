@@ -34,6 +34,8 @@ class ClientPool {
     static bool Contains(const std::string& name);
 
     [[nodiscard]] static std::string ToString();
+
+    static void Reset();
 };
 
 }  // namespace computer_club

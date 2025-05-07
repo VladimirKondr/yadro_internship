@@ -39,4 +39,9 @@ std::string ClientPool::ToString() {
     return result;
 }
 
+void ClientPool::Reset() {
+    instance.reset();
+    clients.clear();
+}
+
 }  // namespace computer_club

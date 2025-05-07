@@ -45,6 +45,8 @@ class TablePool {
     [[nodiscard]] static std::vector<std::shared_ptr<Table>> GetFreeTables();
 
     [[nodiscard]] static std::string ToString();
+
+    static void Reset();
 };
 
 }  // namespace computer_club

@@ -248,4 +248,11 @@ std::string Parser::ToString() {
     return oss.str();
 }
 
+void Parser::Reset() {
+    table_count = 0;
+    hourly_rate = 0.0;
+    open_time = TimePoint();
+    close_time = TimePoint();
+    events.clear();
+}
 }  // namespace computer_club

@@ -48,6 +48,8 @@ class Club {
     [[nodiscard]] TimePoint GetOpenTime() const;
     [[nodiscard]] TimePoint GetCloseTime() const;
     [[nodiscard]] double GetHourlyRate() const;
+
+    static void Reset();
 };
 
 }  // namespace computer_club

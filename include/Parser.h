@@ -48,6 +48,8 @@ class Parser {
     [[nodiscard]] const static std::vector<std::shared_ptr<Event>>& Events();
 
     [[nodiscard]] static std::string ToString();
+
+    static void Reset();
 };
 
 }  // namespace computer_club

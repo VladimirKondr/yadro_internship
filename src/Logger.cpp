@@ -142,4 +142,13 @@ void Logger::Debug(const std::string& message) {
 #endif
 }
 
+void Logger::Reset() {
+    if (file_stream.is_open()) {
+        file_stream.close();
+    }
+    output_stream = &std::cout;
+    destination = LogDestination::STDOUT;
+    instance.reset();
+}
+
 }  // namespace computer_club

@@ -196,4 +196,8 @@ TimePoint Club::GetCloseTime() const {
 double Club::GetHourlyRate() const {
     return hourly_rate_;
 }
+
+void Club::Reset() {
+    instance.reset();
+}
 }  // namespace computer_club
