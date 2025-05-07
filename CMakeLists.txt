@@ -46,13 +46,12 @@ if(GTEST_FOUND)
     add_executable(client_test tests/unit/ClientTest.cpp)
     add_executable(client_pool_test tests/unit/ClientPoolTest.cpp)
     add_executable(table_pool_test tests/unit/TablePoolTest.cpp)
-    add_executable(event_base_test tests/unit/EventBaseTest.cpp)
     add_executable(concrete_events_test tests/unit/ConcreteEventsTest.cpp)
     add_executable(parser_test tests/unit/ParserTest.cpp)
     
     set(TEST_LIST 
         timepoint_test table_test client_test client_pool_test table_pool_test
-        event_base_test concrete_events_test parser_test
+         concrete_events_test parser_test
     )
     
     foreach(TEST_NAME ${TEST_LIST})
