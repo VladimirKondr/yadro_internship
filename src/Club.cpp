@@ -64,10 +64,11 @@ void Club::HandleClientArrival(const std::shared_ptr<Event>& event) {
 
     const TimePoint& time = arrival_event->Time();
     const std::shared_ptr<Client>& client = arrival_event->GetClient();
-
-    if (client->GetTable() != nullptr) {
+    
+    if (client->IsInClub()) {
         all_events_.push_back(std::make_shared<ErrorEvent>(time, "ClientAlreadyInClub", event));
     }
+    client->SetInClub(true);
 }
 
 void Club::HandleClientSeating(const std::shared_ptr<Event>& event) {
@@ -110,7 +111,7 @@ void Club::HandleClientWaiting(const std::shared_ptr<Event>& event) {
 
     if (waiting_clients_.size() >= TablePool::TableCount()) {
         all_events_.push_back(std::make_shared<ClientLeftInvoluntarilyEvent>(time, client));
-        ClientPool::RemoveClient(client->Name());
+        client->SetInClub(false);
         return;
     }
 
@@ -129,11 +130,12 @@ void Club::HandleClientLeaving(const std::shared_ptr<Event>& event) {
     }
 
     if (client->GetTable() != nullptr) {
-        client->GetTable()->Free(time);
+        std::shared_ptr<Table> table_to_free = client->GetTable();
+        table_to_free->Free(time);
         client->ChangeTable(nullptr);
-        ClientPool::RemoveClient(client->Name());
-        SeatClientFromQueue(time, client->GetTable());
+        SeatClientFromQueue(time, table_to_free);
     }
+    client->SetInClub(false);
 }
 
 void Club::SeatClientFromQueue(const TimePoint& time, const std::shared_ptr<Table>& table) {
@@ -154,6 +156,9 @@ void Club::ClosingTime() {
     std::vector<std::shared_ptr<Client>> remaining_clients;
 
     for (const auto& [client_name, client] : ClientPool::Clients()) {
+        if (!client->IsInClub()) {
+            continue;
+        }
         remaining_clients.push_back(client);
     }
 
@@ -168,7 +173,7 @@ void Club::ClosingTime() {
             client->GetTable()->Free(close_time_);
             client->ChangeTable(nullptr);
         }
-        ClientPool::RemoveClient(client->Name());
+        client->SetInClub(false);
         
     }
 

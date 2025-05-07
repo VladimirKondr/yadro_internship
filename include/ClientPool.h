@@ -30,9 +30,7 @@ class ClientPool {
     static std::shared_ptr<Client> GetClient(const std::string& client_name);
 
     static void AddClient(const std::string& name);
-
-    static void RemoveClient(const std::string& name);
-
+    
     static bool Contains(const std::string& name);
     
     [[nodiscard]] static std::string ToString();

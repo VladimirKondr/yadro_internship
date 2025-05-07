@@ -27,13 +27,6 @@ void ClientPool::AddClient(const std::string& name) {
     clients[name] = std::make_shared<Client>(name, nullptr);
 }
 
-void ClientPool::RemoveClient(const std::string& name) {
-    if (!Contains(name)) {
-        throw std::invalid_argument("Can't remove a non-existing user from the pool.");
-    }
-    clients.erase(name);
-}
-
 bool ClientPool::Contains(const std::string& name) {
     return clients.find(name) != clients.end();
 }

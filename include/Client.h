@@ -20,6 +20,7 @@ public:
     [[nodiscard]] const std::string& Name() const;
     [[nodiscard]] std::shared_ptr<Table> GetTable() const;
     [[nodiscard]] bool IsInClub() const;
+    void SetInClub(bool in_club);
     void ChangeTable(const std::shared_ptr<Table>& new_table);
 
     bool operator==(const Client& other) const;

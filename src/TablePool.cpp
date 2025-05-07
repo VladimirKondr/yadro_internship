@@ -66,7 +66,7 @@ std::vector<std::shared_ptr<Table>> TablePool::GetFreeTables() {
     std::vector<std::shared_ptr<Table>> free_tables;
 
     for (const auto& table : tables) {
-        if (!table->IsOccupied()) {
+        if (!table->IsOccupied() && table->Id() != 0) {
             free_tables.push_back(table);
         }
     }

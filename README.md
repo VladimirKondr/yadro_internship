@@ -147,5 +147,9 @@ Clients pay the specified hourly rate, with time rounded up to the nearest hour.
 
 ## Usage
 ```bash
-$ ./task ../example.txt
+mkdir build
+cd build
+cmake ..
+make
+./task ../example.txt
 ```

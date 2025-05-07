@@ -38,6 +38,9 @@ int main(int argc, char* argv[]) {
         computer_club::Logger::Info(club.GetCloseTime().ToString());
         
         for (const auto& table : computer_club::TablePool::Tables()) {
+            if (table->Id() == 0) {
+                continue;
+            }
             computer_club::Logger::Info(std::to_string(table->Id()) + " " 
                       + std::to_string(static_cast<int>(table->Revenue(club.GetHourlyRate()))) + " " 
                       + table->TotalBusyTime().ToString());

@@ -13,7 +13,11 @@ std::shared_ptr<Table> Client::GetTable() const {
 }
 
 bool Client::IsInClub() const {
-    return table_ != nullptr;
+    return in_club_;
+}
+
+void Client::SetInClub(bool in_club) {
+    in_club_ = in_club;
 }
 
 void Client::ChangeTable(const std::shared_ptr<Table>& new_table) {
