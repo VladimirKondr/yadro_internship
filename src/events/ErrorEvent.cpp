@@ -24,7 +24,6 @@ std::shared_ptr<ErrorEvent> ErrorEvent::Parse(std::istringstream& iss, const Tim
 
 std::shared_ptr<Event> ErrorEvent::CauseEvent() const {
     return cause_event_;
-
 }
 
 }  // namespace computer_club

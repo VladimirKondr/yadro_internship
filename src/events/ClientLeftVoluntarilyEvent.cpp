@@ -1,11 +1,13 @@
 #include "events/ClientLeftVoluntarilyEvent.h"
+
 #include "ClientPool.h"
 
 #include <sstream>
 
 namespace computer_club {
 
-ClientLeftVoluntarilyEvent::ClientLeftVoluntarilyEvent(const TimePoint& t, const std::shared_ptr<Client>& client)
+ClientLeftVoluntarilyEvent::ClientLeftVoluntarilyEvent(
+    const TimePoint& t, const std::shared_ptr<Client>& client)
     : IncomingEvent(t, 4, client) {
 }
 

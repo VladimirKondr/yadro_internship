@@ -1,8 +1,8 @@
 #ifndef INCOMINGEVENT_H
 #define INCOMINGEVENT_H
 
-#include "EventBase.h"
 #include "Client.h"
+#include "EventBase.h"
 
 #include <string>
 

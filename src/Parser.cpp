@@ -1,4 +1,5 @@
 #include "Parser.h"
+
 #include "TablePool.h"
 
 #include <fstream>
@@ -77,9 +78,7 @@ void Parser::ParseFile(const std::string& filename) {
     }
     hourly_rate = std::stod(line);
 
-    TablePool::Initialize(Parser::TableCount(), 
-                                             Parser::HourlyRate());
-                    
+    TablePool::Initialize(Parser::TableCount(), Parser::HourlyRate());
 
     while (std::getline(file, line)) {
         if (line.empty()) {

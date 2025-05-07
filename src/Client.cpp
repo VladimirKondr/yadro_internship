@@ -2,7 +2,9 @@
 
 namespace computer_club {
 
-Client::Client(std::string name, const std::shared_ptr<Table>& t) : name_(std::move(name)), table_(t) {}
+Client::Client(std::string name, const std::shared_ptr<Table>& t)
+    : name_(std::move(name)), table_(t) {
+}
 
 const std::string& Client::Name() const {
     return name_;

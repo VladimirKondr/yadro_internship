@@ -2,19 +2,20 @@
 #define TABLE_H
 
 #include "events/TimePoint.h"
+
 #include <string>
 
 namespace computer_club {
 
 class Table {
-private:
+   private:
     int id_;
     bool occupied_ = false;
     TimePoint occupation_start_;
     int total_busy_hours_ = 0;
     TimePoint total_busy_time_;
 
-public:
+   public:
     explicit Table(int id);
 
     [[nodiscard]] int Id() const;
@@ -30,6 +31,6 @@ public:
     [[nodiscard]] std::string ToString() const;
 };
 
-} // namespace computer_club
+}  // namespace computer_club
 
-#endif // TABLE_H
+#endif  // TABLE_H

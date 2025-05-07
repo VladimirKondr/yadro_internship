@@ -1,8 +1,8 @@
 #ifndef CLIENTLEFTINVOLUNTARILYEVENT_H
 #define CLIENTLEFTINVOLUNTARILYEVENT_H
 
-#include "OutgoingEvent.h"
 #include "Client.h"
+#include "OutgoingEvent.h"
 
 #include <memory>
 #include <sstream>
@@ -11,8 +11,9 @@
 namespace computer_club {
 
 class ClientLeftInvoluntarilyEvent : public OutgoingEvent {
-    private:
+   private:
     std::shared_ptr<Client> client_;
+
    public:
     ClientLeftInvoluntarilyEvent(const TimePoint& t, const std::shared_ptr<Client>& client);
     [[nodiscard]] std::shared_ptr<Client> GetClient() const;

@@ -1,5 +1,7 @@
 #include "events/ClientWaitingEvent.h"
+
 #include "ClientPool.h"
+
 #include <sstream>
 
 namespace computer_club {

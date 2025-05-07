@@ -26,7 +26,7 @@ Club& Club::GetInstance(TimePoint open_time, TimePoint close_time, double hourly
     if (!instance) {
         instance = std::unique_ptr<Club>(new Club(open_time, close_time, hourly_rate));
     }
-    
+
     return *instance;
 }
 
@@ -64,7 +64,7 @@ void Club::HandleClientArrival(const std::shared_ptr<Event>& event) {
 
     const TimePoint& time = arrival_event->Time();
     const std::shared_ptr<Client>& client = arrival_event->GetClient();
-    
+
     if (client->IsInClub()) {
         all_events_.push_back(std::make_shared<ErrorEvent>(time, "ClientAlreadyInClub", event));
     }
@@ -164,7 +164,9 @@ void Club::ClosingTime() {
 
     std::sort(
         remaining_clients.begin(), remaining_clients.end(),
-        [](const std::shared_ptr<Client>& a, const std::shared_ptr<Client>& b) { return a->Name() < b->Name(); });
+        [](const std::shared_ptr<Client>& a, const std::shared_ptr<Client>& b) {
+            return a->Name() < b->Name();
+        });
 
     for (const auto& client : remaining_clients) {
         all_events_.push_back(std::make_shared<ClientLeftInvoluntarilyEvent>(close_time_, client));
@@ -174,7 +176,6 @@ void Club::ClosingTime() {
             client->ChangeTable(nullptr);
         }
         client->SetInClub(false);
-        
     }
 
     waiting_clients_ = std::queue<std::shared_ptr<Client>>();

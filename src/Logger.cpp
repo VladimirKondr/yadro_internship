@@ -4,8 +4,7 @@ namespace computer_club {
 
 std::ofstream Logger::file_stream;
 std::ostream* Logger::output_stream = &std::cout;
-LogDestination Logger::destination =
-    LogDestination::STDOUT;
+LogDestination Logger::destination = LogDestination::STDOUT;
 std::unique_ptr<Logger> Logger::instance = nullptr;
 
 Logger::Logger() {

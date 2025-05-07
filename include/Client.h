@@ -1,22 +1,23 @@
 #ifndef CLIENT_H
 #define CLIENT_H
 
-#include <string>
-#include <memory>
 #include "Table.h"
+
+#include <memory>
+#include <string>
 
 namespace computer_club {
 
 class Client {
-private:
+   private:
     std::string name_;
     std::shared_ptr<Table> table_;
     bool in_club_ = false;
 
-public:
+   public:
     Client() = default;
     explicit Client(std::string name, const std::shared_ptr<Table>& t);
-    
+
     [[nodiscard]] const std::string& Name() const;
     [[nodiscard]] std::shared_ptr<Table> GetTable() const;
     [[nodiscard]] bool IsInClub() const;
@@ -29,6 +30,6 @@ public:
     [[nodiscard]] std::string ToString() const;
 };
 
-} // namespace computer_club
+}  // namespace computer_club
 
-#endif // CLIENT_H
+#endif  // CLIENT_H

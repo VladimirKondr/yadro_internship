@@ -1,4 +1,5 @@
 #include "events/OutgoingEvent.h"
+
 #include <stdexcept>
 #include <utility>
 

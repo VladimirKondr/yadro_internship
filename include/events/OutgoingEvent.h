@@ -1,11 +1,11 @@
 #ifndef OUTGOINGEVENT_H
 #define OUTGOINGEVENT_H
 
-#include "EventBase.h"
 #include "Client.h"
+#include "EventBase.h"
 
-#include <string>
 #include <optional>
+#include <string>
 
 namespace computer_club {
 

@@ -1,8 +1,8 @@
 #ifndef CLIENTARRIVALEVENT_H
 #define CLIENTARRIVALEVENT_H
 
-#include "IncomingEvent.h"
 #include "Client.h"
+#include "IncomingEvent.h"
 
 #include <memory>
 #include <sstream>

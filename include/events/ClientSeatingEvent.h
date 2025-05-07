@@ -1,8 +1,8 @@
 #ifndef CLIENTSEATINGEVENT_H
 #define CLIENTSEATINGEVENT_H
 
-#include "OutgoingEvent.h"
 #include "Client.h"
+#include "OutgoingEvent.h"
 
 #include <memory>
 #include <sstream>
@@ -16,7 +16,9 @@ class ClientSeatingEvent : public OutgoingEvent {
     std::shared_ptr<Client> client_;
 
    public:
-    ClientSeatingEvent(const TimePoint& t, const std::shared_ptr<Client>& client, const std::shared_ptr<Table>& table);
+    ClientSeatingEvent(
+        const TimePoint& t, const std::shared_ptr<Client>& client,
+        const std::shared_ptr<Table>& table);
     [[nodiscard]] std::shared_ptr<Table> GetTable() const;
     [[nodiscard]] std::shared_ptr<Client> GetClient() const;
     [[nodiscard]] std::string ToString() const override;

@@ -1,11 +1,13 @@
 #include "Table.h"
+
 #include <cmath>
 #include <iomanip>
 #include <sstream>
 
 namespace computer_club {
 
-Table::Table(int id) : id_(id) {}
+Table::Table(int id) : id_(id) {
+}
 
 int Table::Id() const {
     return id_;
@@ -49,4 +51,4 @@ std::string Table::ToString() const {
     return oss.str();
 }
 
-} // namespace computer_club
+}  // namespace computer_club

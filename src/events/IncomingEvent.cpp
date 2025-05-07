@@ -1,4 +1,5 @@
 #include "events/IncomingEvent.h"
+
 #include <Client.h>
 
 namespace computer_club {

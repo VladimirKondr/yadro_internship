@@ -1,6 +1,7 @@
 #include "events/ClientArrivalEvent.h"
-#include "ClientPool.h"
+
 #include "Client.h"
+#include "ClientPool.h"
 
 #include <sstream>
 
@@ -9,6 +10,7 @@ namespace computer_club {
 ClientArrivalEvent::ClientArrivalEvent(const TimePoint& t, const std::shared_ptr<Client>& client)
     : IncomingEvent(t, 1, client) {
 }
+
 std::string ClientArrivalEvent::ToString() const {
     return Time().ToString() + " 1 " + GetClient()->Name();
 }
