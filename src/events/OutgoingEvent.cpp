@@ -1,5 +1,5 @@
 #include "events/OutgoingEvent.h"
-
+#include <stdexcept>
 #include <utility>
 
 namespace computer_club {

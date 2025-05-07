@@ -12,19 +12,19 @@ class Parser {
    private:
     Parser() = default;
     static std::unique_ptr<Parser> instance;
-    int table_count_{};
-    TimePoint open_time_;
-    TimePoint close_time_;
-    double hourly_rate_{};
-    std::vector<std::shared_ptr<Event>> events_;
+    static int table_count;
+    static TimePoint open_time;
+    static TimePoint close_time;
+    static double hourly_rate;
+    static std::vector<std::shared_ptr<Event>> events;
 
     static void ValidateTableCount(const std::string& line);
     static void ValidateTimeRange(const std::string& line);
     static void ValidateHourlyRate(const std::string& line);
-    void ValidateEventFormat(const std::string& line) const;
+    static void ValidateEventFormat(const std::string& line);
     static void ValidateClientNameFormat(std::istringstream& iss);
-    void ValidateClientAndTableFormat(std::istringstream& iss) const ;
-    void ValidateEventSequence() const;
+    static void ValidateClientAndTableFormat(std::istringstream& iss);
+    static void ValidateEventSequence();
 
    public:
     Parser(const Parser&) = delete;
@@ -35,19 +35,19 @@ class Parser {
 
     static Parser& GetInstance();
 
-    void ParseFile(const std::string& filename);
+    static void ParseFile(const std::string& filename);
 
-    [[nodiscard]] int TableCount() const;
+    [[nodiscard]] static int TableCount();
 
-    [[nodiscard]] TimePoint OpenTime() const;
+    [[nodiscard]] static TimePoint OpenTime();
 
-    [[nodiscard]] TimePoint CloseTime() const;
+    [[nodiscard]] static TimePoint CloseTime();
 
-    [[nodiscard]] double HourlyRate() const;
+    [[nodiscard]] static double HourlyRate();
 
-    [[nodiscard]] const std::vector<std::shared_ptr<Event>>& Events() const;
+    [[nodiscard]] const static std::vector<std::shared_ptr<Event>>& Events();
 
-    [[nodiscard]] std::string ToString() const;
+    [[nodiscard]] static std::string ToString();
 };
 
 }  // namespace computer_club

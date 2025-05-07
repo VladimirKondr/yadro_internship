@@ -2,15 +2,33 @@
 
 namespace computer_club {
 
-const std::string& Client::Name() {
+Client::Client(std::string name, const std::shared_ptr<Table>& t) : name_(std::move(name)), table_(t) {}
+
+const std::string& Client::Name() const {
     return name_;
 }
 
-int Client::TableNumber() const {
-    return table_number_;
+std::shared_ptr<Table> Client::GetTable() const {
+    return table_;
 }
 
-void Client::SetTableNumber(int table_number) {
-    table_number_ = table_number;
+bool Client::IsInClub() const {
+    return table_ != nullptr;
+}
+
+void Client::ChangeTable(const std::shared_ptr<Table>& new_table) {
+    table_ = new_table;
+}
+
+bool Client::operator==(const Client& other) const {
+    return name_ == other.name_;
+}
+
+bool Client::operator!=(const Client& other) const {
+    return !(*this == other);
+}
+
+std::string Client::ToString() const {
+    return "Client: " + name_ + ", Table: " + (table_ ? table_->ToString() : "None");
 }
 }  // namespace computer_club

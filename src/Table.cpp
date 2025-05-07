@@ -15,21 +15,8 @@ bool Table::IsOccupied() const {
     return occupied_;
 }
 
-int Table::TotalBusyMinutes() const {
-    return total_busy_minutes_;
-}
-
-double Table::Revenue() const {
-    return revenue_;
-}
-
-std::string Table::FormatBusyTime() const {
-    int hours = total_busy_minutes_ / 60;
-    int minutes = total_busy_minutes_ % 60;
-    std::ostringstream oss;
-    oss << std::setfill('0') << std::setw(2) << hours << ":" 
-        << std::setfill('0') << std::setw(2) << minutes;
-    return oss.str();
+int Table::TotalBusyHours() const {
+    return total_busy_hours_;
 }
 
 void Table::Occupy(const TimePoint& time) {
@@ -39,16 +26,27 @@ void Table::Occupy(const TimePoint& time) {
     }
 }
 
-void Table::Free(const TimePoint& time, double hourly_rate) {
+void Table::Free(const TimePoint& time) {
     if (occupied_) {
         int minutes_occupied = time - occupation_start_;
-        total_busy_minutes_ += minutes_occupied;
-        
-        double hours = std::ceil(minutes_occupied / 60.0);
-        revenue_ += hours * hourly_rate;
-        
+        total_busy_hours_ += std::ceil(minutes_occupied / 60.0);
+        total_busy_time_ += minutes_occupied;
         occupied_ = false;
     }
+}
+
+double Table::Revenue(double hourly_rate) const {
+    return total_busy_hours_ * hourly_rate;
+}
+
+TimePoint Table::TotalBusyTime() const {
+    return total_busy_time_;
+}
+
+std::string Table::ToString() const {
+    std::ostringstream oss;
+    oss << id_;
+    return oss.str();
 }
 
 } // namespace computer_club

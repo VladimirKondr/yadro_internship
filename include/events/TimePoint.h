@@ -16,6 +16,11 @@ class TimePoint {
 
     TimePoint(int h, int m);
 
+    TimePoint(const TimePoint& other) = default;
+    TimePoint(TimePoint&& other) noexcept = default;
+    TimePoint& operator=(const TimePoint& other) = default;
+    TimePoint& operator=(TimePoint&& other) noexcept = default;
+
     static TimePoint Parse(const std::string& time_str);
 
     static TimePoint Parse(std::istream& is);

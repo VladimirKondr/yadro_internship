@@ -1,7 +1,11 @@
+#include "ClientPool.h"
 #include "Parser.h"
 #include "Club.h"
 #include "Logger.h"
+#include "TablePool.h"
+#include "events/EventBase.h"
 #include <iostream>
+
 
 int main(int argc, char* argv[]) {
     if (argc != 2) {
@@ -10,39 +14,33 @@ int main(int argc, char* argv[]) {
     }
     
     try {
+        computer_club::Logger::SetOutputToBoth("logs.txt");
+        computer_club::Parser::ParseFile(argv[1]);
 
-        computer_club::Logger& logger = computer_club::Logger::GetInstance();
-        logger.SetOutputFile("log.txt");
-        
-        computer_club::Parser& parser = computer_club::Parser::GetInstance();
-        parser.ParseFile(argv[1]);
-        
-        computer_club::Club club(
-            parser.TableCount(),
-            parser.OpenTime(),
-            parser.CloseTime(),
-            parser.HourlyRate()
+        computer_club::Club& club = computer_club::Club::GetInstance(
+            computer_club::Parser::OpenTime(),
+            computer_club::Parser::CloseTime(),
+            computer_club::Parser::HourlyRate()
         );
         
-        for (const auto& event : parser.Events()) {
+        for (const auto& event : computer_club::Parser::Events()) {
             club.ProcessEvent(event);
         }
         
         club.ClosingTime();
         
-        
-        std::cout << parser.OpenTime().ToString() << '\n';
+        computer_club::Logger::Info(club.GetOpenTime().ToString());
         
         for (const auto& event : club.GetAllEvents()) {
-            std::cout << event->ToString() << '\n';
+            computer_club::Logger::Info(event->ToString());
         }
         
-        std::cout << parser.CloseTime().ToString() << '\n';
+        computer_club::Logger::Info(club.GetCloseTime().ToString());
         
-        for (const auto& table : club.GetTables()) {
-            std::cout << std::to_string(table.Id()) << " " 
-                      << static_cast<int>(table.Revenue()) << " " 
-                      << table.FormatBusyTime() << '\n';
+        for (const auto& table : computer_club::TablePool::Tables()) {
+            computer_club::Logger::Info(std::to_string(table->Id()) + " " 
+                      + std::to_string(static_cast<int>(table->Revenue(club.GetHourlyRate()))) + " " 
+                      + table->TotalBusyTime().ToString());
         }
         
     } catch (const computer_club::FormatError&) {

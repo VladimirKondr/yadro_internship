@@ -2,8 +2,10 @@
 #define OUTGOINGEVENT_H
 
 #include "EventBase.h"
+#include "Client.h"
 
 #include <string>
+#include <optional>
 
 namespace computer_club {
 

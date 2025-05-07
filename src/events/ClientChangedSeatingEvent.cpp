@@ -1,21 +1,23 @@
 #include "events/ClientChangedSeatingEvent.h"
+#include "ClientPool.h"
+#include "TablePool.h"
 
 #include <sstream>
 
 namespace computer_club {
 
 ClientChangedSeatingEvent::ClientChangedSeatingEvent(
-    const TimePoint& t, std::string client, int table)
-    : IncomingEvent(t, 2, std::move(client)), table_number_(table) {
+    const TimePoint& t, const std::shared_ptr<Client>& client, const std::shared_ptr<Table>& table)
+    : IncomingEvent(t, 2, client), table_(table) {
 }
 
-int ClientChangedSeatingEvent::TableNumber() const {
-    return table_number_;
+std::shared_ptr<Table> ClientChangedSeatingEvent::GetTable() const {
+    return table_;
 }
 
 std::string ClientChangedSeatingEvent::ToString() const {
-    return Time().ToString() + " 2 " + ClientName() + " " +
-           std::to_string(TableNumber());
+    return Time().ToString() + " 2 " + GetClient()->Name() + " " +
+           table_->ToString();
 }
 
 std::shared_ptr<ClientChangedSeatingEvent> ClientChangedSeatingEvent::Parse(
@@ -23,7 +25,7 @@ std::shared_ptr<ClientChangedSeatingEvent> ClientChangedSeatingEvent::Parse(
     std::string client_name;
     int table_number = -1;
     iss >> client_name >> table_number;
-    return std::make_unique<ClientChangedSeatingEvent>(time, client_name, table_number);
+    return std::make_shared<ClientChangedSeatingEvent>(time, ClientPool::GetClient(client_name), TablePool::GetTable(table_number));
 }
 
 }  // namespace computer_club

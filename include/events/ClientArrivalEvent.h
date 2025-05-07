@@ -2,6 +2,7 @@
 #define CLIENTARRIVALEVENT_H
 
 #include "IncomingEvent.h"
+#include "Client.h"
 
 #include <memory>
 #include <sstream>
@@ -11,7 +12,7 @@ namespace computer_club {
 
 class ClientArrivalEvent : public IncomingEvent {
    public:
-    ClientArrivalEvent(const TimePoint& t, std::string client);
+    ClientArrivalEvent(const TimePoint& t, const std::shared_ptr<Client>& client);
     [[nodiscard]] std::string ToString() const override;
     static std::shared_ptr<ClientArrivalEvent> Parse(
         std::istringstream& iss, const TimePoint& time);

@@ -2,6 +2,7 @@
 #define CLIENTLEFTINVOLUNTARILYEVENT_H
 
 #include "OutgoingEvent.h"
+#include "Client.h"
 
 #include <memory>
 #include <sstream>
@@ -10,13 +11,12 @@
 namespace computer_club {
 
 class ClientLeftInvoluntarilyEvent : public OutgoingEvent {
-   private:
-    std::string client_name_;
-
+    private:
+    std::shared_ptr<Client> client_;
    public:
-    ClientLeftInvoluntarilyEvent(const TimePoint& t, std::string client);
+    ClientLeftInvoluntarilyEvent(const TimePoint& t, const std::shared_ptr<Client>& client);
+    [[nodiscard]] std::shared_ptr<Client> GetClient() const;
     [[nodiscard]] std::string ToString() const override;
-    [[nodiscard]] std::string ClientName() const;
     static std::shared_ptr<ClientLeftInvoluntarilyEvent> Parse(
         std::istringstream& iss, const TimePoint& time);
 };

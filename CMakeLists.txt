@@ -27,6 +27,8 @@ add_executable(task
     src/events/ClientSeatingEvent.cpp
     src/events/ErrorEvent.cpp
     src/events/TimePoint.cpp
+    src/ClientPool.cpp
+    src/TablePool.cpp
 )
 
 find_package(GTest QUIET)
@@ -50,6 +52,8 @@ if(GTEST_FOUND)
         src/events/ClientSeatingEvent.cpp
         src/events/ErrorEvent.cpp
         src/events/TimePoint.cpp
+        src/ClientPool.cpp
+        src/TablePool.cpp
     )
     target_include_directories(club_test PRIVATE include)
     target_link_libraries(club_test GTest::GTest GTest::Main)

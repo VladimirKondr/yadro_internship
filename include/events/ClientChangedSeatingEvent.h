@@ -2,6 +2,7 @@
 #define CLIENTCHANGEDSEATINGEVENT_H
 
 #include "IncomingEvent.h"
+#include "Client.h"
 
 #include <memory>
 #include <sstream>
@@ -11,11 +12,11 @@ namespace computer_club {
 
 class ClientChangedSeatingEvent : public IncomingEvent {
    private:
-    int table_number_;
+    std::shared_ptr<Table> table_;
 
    public:
-    ClientChangedSeatingEvent(const TimePoint& t, std::string client, int table);
-    [[nodiscard]] int TableNumber() const;
+    ClientChangedSeatingEvent(const TimePoint& t, const std::shared_ptr<Client>& client, const std::shared_ptr<Table>& table);
+    [[nodiscard]] std::shared_ptr<Table> GetTable() const;
     [[nodiscard]] std::string ToString() const override;
     static std::shared_ptr<ClientChangedSeatingEvent> Parse(
         std::istringstream& iss, const TimePoint& time);

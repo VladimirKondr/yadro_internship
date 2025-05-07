@@ -1,15 +1,14 @@
 #include "events/IncomingEvent.h"
-
-#include <utility>
+#include <Client.h>
 
 namespace computer_club {
 
-IncomingEvent::IncomingEvent(const TimePoint& t, int i, std::string client)
-    : Event(t, i), client_name_(std::move(client)) {
+IncomingEvent::IncomingEvent(const TimePoint& t, int i, const std::shared_ptr<Client>& client)
+    : Event(t, i), client_(client) {
 }
 
-std::string IncomingEvent::ClientName() const {
-    return client_name_;
+std::shared_ptr<Client> IncomingEvent::GetClient() const {
+    return client_;
 }
 
 }  // namespace computer_club
